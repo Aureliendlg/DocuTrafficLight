@@ -29,9 +29,9 @@ else:
 
 # Determine the state
 if args.state == 'on':
-    state = 0
-elif args.state == 'off':
     state = 1
+elif args.state == 'off':
+    state = 0
 else:
     raise SystemExit('Bad state specified.')
 
