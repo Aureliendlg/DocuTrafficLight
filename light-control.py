@@ -40,4 +40,5 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 # Trigger the GPIO output
-GPIO.setup(pin, GPIO.OUT, initial=state)
+GPIO.setup(pin, GPIO.OUT)
+GPIO.output(pin, 1)
