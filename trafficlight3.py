@@ -2,7 +2,6 @@ import json
 import urllib
 import urllib2
 import sched, time
-import RPi.GPIO as GPIO
 
 
 trafficLightColour = ""
@@ -107,16 +106,6 @@ def runFullCheck():
 
 #######******************************************########
 
-# Setup Raspnerry GPIO
-#def setupGPIO():
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.OUT)
-GPIO.setup(24, GPIO.OUT)
-GPIO.setup(24, GPIO.OUT)
-
-# GPIO set up 
-#setupGPIO()
-
 
 # Scheduled task every 60 - runFullCheck() and output the colour to traffic light
 s = sched.scheduler(time.time, time.sleep)
@@ -126,37 +115,25 @@ def scheduledCheck(sc):
 	print(statusColour)
 	try:
 		if(statusColour == "GRN"):
-			GPIO.output(18, 1)
-			GPIO.output(24, 0)
-			GPIO.output(25, 0)
+			system("light-control GRN on")
+			system("light-control YLLW off")
+			system("light-control RED off")
 		elif(statusColour == "YLLW"):
-			GPIO.output(18, 0)
-			GPIO.output(24, 1)
-			GPIO.output(25, 0)
+			system("light-control GRN off")
+			system("light-control YLLW on")
+			system("light-control RED off")
 		elif(statusColour == "RED"):
-			GPIO.output(18, 0)
-			GPIO.output(24, 0)
-			GPIO.output(25, 1)
+			system("light-control GRN off")
+			system("light-control YLLW off")
+			system("light-control RED on")
 	except:
-		GPIO.cleanup()
+		print("something wrong happen while switch a light")
 	sc.enter(60, 1, scheduledCheck, (sc,))
 
 s.enter(60, 1, scheduledCheck, (s,))
 s.run()
 
 
-#statusColour = runFullCheck()
-
-
-
 
 
 #################################
-#statusColour = runFullCheck()   #
-#print(statusColour)             #
-#################################
-
-
-
-
-
