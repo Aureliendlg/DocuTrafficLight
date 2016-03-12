@@ -108,14 +108,14 @@ def runFullCheck():
 #######******************************************########
 
 # Setup Raspnerry GPIO
-def setupGPIO():
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(18, GPIO.OUT)
-	GPIO.setup(24, GPIO.OUT)
-	GPIO.setup(24, GPIO.OUT)
+#def setupGPIO():
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
 
 # GPIO set up 
-setupGPIO()
+#setupGPIO()
 
 
 # Scheduled task every 60 - runFullCheck() and output the colour to traffic light
