@@ -10,7 +10,7 @@ if os.getuid() != 0:
 
 parser = argparse.ArgumentParser(description = 'Control Traffic Signal State')
 parser.add_argument('color', choices = ['RED', 'YLLW', 'GRN'], help = 'Color of light')
-parser.add_argument('state', choices = ['on', 'off', 'blink'], help = 'State of light')
+parser.add_argument('state', choices = [1, 0, 'blink'], help = 'State of light')
 parser.add_argument('--verbose', '-v', action = 'store_true')
 args = parser.parse_args()
 
@@ -41,4 +41,4 @@ GPIO.setwarnings(False)
 
 # Trigger the GPIO output
 GPIO.setup(pin, GPIO.OUT)
-GPIO.output(pin, 1)
+GPIO.output(pin, state)
