@@ -36,7 +36,7 @@ else:
     raise SystemExit('Bad state specified.')
 
 # Set up the GPIO interface
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 # Trigger the GPIO output
