@@ -2,6 +2,7 @@ import json
 import urllib
 import urllib2
 import sched, time
+from subprocess import call
 
 
 trafficLightColour = ""
@@ -115,17 +116,17 @@ def scheduledCheck(sc):
 	print(statusColour)
 	try:
 		if(statusColour == "GRN"):
-			system("light-control GRN on")
-			system("light-control YLLW off")
-			system("light-control RED off")
+			call(["light-control", "GRN","on"])
+			call(["light-control", "YLLW","off"])
+			call(["light-control", "RED","off"])
 		elif(statusColour == "YLLW"):
-			system("light-control GRN off")
-			system("light-control YLLW on")
-			system("light-control RED off")
+			call(["light-control", "GRN","off"])
+			call(["light-control", "YLLW","on"])
+			call(["light-control", "RED","off"])
 		elif(statusColour == "RED"):
-			system("light-control GRN off")
-			system("light-control YLLW off")
-			system("light-control RED on")
+			call(["light-control", "GRN","off"])
+			call(["light-control", "YLLW","off"])
+			call(["light-control", "RED","off"])
 	except:
 		print("something wrong happen while switch a light")
 	sc.enter(60, 1, scheduledCheck, (sc,))
