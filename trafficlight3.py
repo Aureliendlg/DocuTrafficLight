@@ -8,8 +8,8 @@ from subprocess import call
 trafficLightColour = ""
 
 # server List
-serverNameList = ['EU', 'EU1', 'NA1', 'NA2', 'DEMO']
-serverIdList = {'EU': 6, 'EU1': 7, 'NA1':1, 'NA2':2, 'DEMO':4}
+serverNameList = ['EU', 'EU1', 'NA1', 'NA2', 'DEMO', 'Customer Service', 'Headquarter']
+serverIdList = {'EU': 6, 'EU1': 7, 'NA1':1, 'NA2':2, 'DEMO':4, 'Customer Service':8, 'Headquarter':9}
 servers = []
 
 
