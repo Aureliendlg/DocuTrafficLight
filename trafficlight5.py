@@ -8,8 +8,8 @@ from subprocess import call
 trafficLightColour = ""
 
 # server List
-serverNameList = ['EU', 'EU1', 'NA1', 'NA2', 'DEMO', 'Customer Service', 'Headquarters']
-serverIdList = {'EU': 6, 'EU1': 7, 'NA1':1, 'NA2':2, 'DEMO':4, 'Customer Service':8, 'Headquarters':9}
+serverNameList = ["EU", "EU1", "NA1", "NA2", "DEMO", "Customer Service", "Headquarters"]
+serverIdList = {"EU": 6, "EU1": 7, "NA1":1, "NA2":2, "DEMO":4, "Customer Service":8, "Headquarters":9}
 servers = []
 
 
@@ -21,8 +21,8 @@ class Server:
 	def __init__(self, name, serverId):
 		self.name = name
 		self.serverId = serverId
-		self.colour = 'GRN'
-		self.changed = False
+		self.colour = "GRN"
+		self.changed = "False"
 		self.id = None
 
 ####### END CLASS SERVER #######
@@ -72,7 +72,7 @@ def runFullCheck():
 	# Set Each server its colour and Event ID
 	def setServerColour():
 		for server in servers:
-			server.changed = False
+			server.changed = "False"
 		for event in reversed(allOpenEventIds):
 			openEvent = createJson("event/" + str(event) + "?format=json")
 			sName =  openEvent["event_state_changes"][len(openEvent["event_state_changes"])-1]["environment"]["name"]
@@ -80,11 +80,11 @@ def runFullCheck():
 				if server.name ==  sName:
 					server.colour = openEvent["event_state_changes"][len(openEvent["event_state_changes"])-1]["severity"]["code"]
 					server.id = openEvent["id"]
-					server.changed = True
-		#set server that haven't changed an event open against them to GRN
+					server.changed = "True"
+		#set server that haven"t changed an event open against them to GRN
 		for server in servers:
-			if server.changed == False:
-				server.colour = 'GRN'
+			if server.changed == "False":
+				server.colour = "GRN"
 
 
 
@@ -95,7 +95,7 @@ def runFullCheck():
 	def setTrafficLightcolour():
 		tColour = "GRN"
 		for server in servers:
-			#print(server.name + " " + server.colour)
+			print(server.name + " " + server.colour + " " + server.changed)
 			if server.colour == "YLLW":
 				if tColour != "RED":
 					tColour = "YLLW"
@@ -111,12 +111,12 @@ def runFullCheck():
 	setServerColour()
 	trafficLightColour = setTrafficLightcolour()
 
-	return trafficLightColour
+	return  
 
 #######******************************************########
 
 
-# Scheduled task every 60 - runFullCheck() and output the colour to traffic light
+#Scheduled task every 60 - runFullCheck() and output the colour to traffic light
 s = sched.scheduler(time.time, time.sleep)
 
 def scheduledCheck(sc): 
